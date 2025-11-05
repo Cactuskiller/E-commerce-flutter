@@ -1,0 +1,61 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- ✅ Add this meta-data for your OneSignal App ID -->
+    <meta-data
+        android:name="onesignal_app_id"
+        android:value="63e73727-9fa6-4814-a6dc-1f8c20e0858f" />
+
+    <!-- ✅ Required permission for internet access -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Optional: allows receiving notifications when app is closed -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <application
+        android:label="e_commerce"
+        android:name="${applicationName}"
+        android:usesCleartextTraffic="true"
+        android:icon="@mipmap/ic_launcher">
+
+        <!-- ✅ Add this inside application for OneSignal -->
+        <meta-data
+            android:name="com.onesignal.NotificationServiceExtension"
+            android:value="com.onesignal.OneSignalFlutterApplication" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:taskAffinity=""
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+
+            <meta-data
+                android:name="io.flutter.embedding.android.NormalTheme"
+                android:resource="@style/NormalTheme" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- ✅ Flutter auto-generated entry -->
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2" />
+    </application>
+
+    <!-- ✅ Keep the query section as is -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.PROCESS_TEXT" />
+            <data android:mimeType="text/plain" />
+        </intent>
+    </queries>
+</manifest>
+
+
+
