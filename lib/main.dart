@@ -27,12 +27,13 @@ Future<void> initOneSignal() async {
 
   // Handle when user taps a notification
   OneSignal.Notifications.addClickListener((event) {
-    debugPrint('🔔 Notification clicked: ${event.notification.jsonRepresentation()}');
+    debugPrint(
+      '🔔 Notification clicked: ${event.notification.jsonRepresentation()}',
+    );
   });
 
   debugPrint("✅ OneSignal initialized successfully!");
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -60,28 +61,29 @@ class _WebViewAppState extends State<WebViewApp> {
   @override
   void initState() {
     super.initState();
-    controller = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      // Use iPhone user agent for better mobile layout
-      ..setUserAgent(
-        'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) '
-        'AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1',
-      )
-      ..setNavigationDelegate(
-        NavigationDelegate(
-          onPageStarted: (String url) {
-            setState(() {
-              isLoading = true;
-            });
-          },
-          onPageFinished: (String url) {
-            setState(() {
-              isLoading = false;
-            });
+    controller =
+        WebViewController()
+          ..setJavaScriptMode(JavaScriptMode.unrestricted)
+          // Use iPhone user agent for better mobile layout
+          ..setUserAgent(
+            'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) '
+            'AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1',
+          )
+          ..setNavigationDelegate(
+            NavigationDelegate(
+              onPageStarted: (String url) {
+                setState(() {
+                  isLoading = true;
+                });
+              },
+              onPageFinished: (String url) {
+                setState(() {
+                  isLoading = false;
+                });
 
-            // Apply layout fixes after page load
-            Future.delayed(const Duration(milliseconds: 500), () {
-              controller.runJavaScript('''
+                // Apply layout fixes after page load
+                Future.delayed(const Duration(milliseconds: 500), () {
+                  controller.runJavaScript('''
                 console.log('Fixing navbar position...');
                 
                 // Ensure proper mobile viewport
@@ -167,11 +169,11 @@ class _WebViewAppState extends State<WebViewApp> {
                   console.log('Navbar fix applied');
                 }, 300);
               ''');
-            });
-          },
-        ),
-      )
-      ..loadRequest(Uri.parse('https://danya.puretik.info/'));
+                });
+              },
+            ),
+          )
+          ..loadRequest(Uri.parse('https://danya.puretik.info/'));
   }
 
   @override
